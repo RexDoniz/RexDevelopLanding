@@ -4,7 +4,7 @@ import { fileURLToPath, URL } from 'url'
 
 export default defineConfig({
   plugins: [vue()],
-  base: '/LandingPageVue3/',
+  base: '/RexDevelopLanding/',
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
