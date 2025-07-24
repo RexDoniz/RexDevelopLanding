@@ -54,11 +54,12 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 
-const activeSection = ref<'about' | 'mission' | 'values' | 'experience'>('about');
+const activeSection = ref<'about' | 'mission' | 'values' | 'experience' | null>('about');
 
-function toggleAccordion(section: typeof activeSection.value) {
+function toggleAccordion(section: 'about' | 'mission' | 'values' | 'experience') {
   activeSection.value = activeSection.value === section ? null : section;
 }
+
 </script>
 
 <style scoped>

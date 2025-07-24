@@ -1,5 +1,16 @@
-# Vue 3 + TypeScript + Vite
+# RexDevelop Landing Page
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+Landing page profesional desarrollada con **Vue 3**, **TypeScript** y **Vite**.
 
-Learn more about the recommended Project Setup and IDE Support in the [Vue Docs TypeScript Guide](https://vuejs.org/guide/typescript/overview.html#project-setup).
+## Características principales
+
+- Vue 3 con `<script setup>` y composición moderna.
+- Ruteo con Vue Router 4.
+- Estilos modernos con CSS variables y glassmorphism.
+- Componentes reutilizables y responsivos.
+- Integración de FontAwesome para iconos.
+- Formularios accesibles y validación reactiva.
+- Scroll automático a secciones vía hash en la URL.
+- Alias `@` configurado para imports limpios.
+
+## Instalación
