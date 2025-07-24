@@ -4,8 +4,7 @@ import { fileURLToPath, URL } from 'url'
 
 export default defineConfig({
   plugins: [vue()],
-  base: '/LandingPage/',
-  resolve: {
+  base: '/LandingPageVue3/',
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
     },
