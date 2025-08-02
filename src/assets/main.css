@@ -9,6 +9,8 @@ body, html {
   overflow-y: scroll;
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  font-family: 'Inter', sans-serif;
+  scroll-behavior: smooth;
 }
 
 body::-webkit-scrollbar {
@@ -19,7 +21,7 @@ body::-webkit-scrollbar {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Inter', Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -51,8 +53,8 @@ section {
 }
 
 body {
-  background-color: var(--color-background);
-  color: var(--color-primary);
+  background: linear-gradient(135deg, var(--color-background) 0%, var(--color-secondary) 100%);
+  color: var(--color-text);
 }
 
 @keyframes gradient-animation {
@@ -70,36 +72,36 @@ body {
 .animated-background {
   width: 100%;
   height: 100%; /* O 100% si deseas que cubra todo el contenido */
-  background: linear-gradient(270deg, 
-    rgba(255, 102, 153, 0.2), 
-    rgba(51, 125, 137, 0.2), 
-    rgba(255, 204, 153, 0.2), 
-    rgba(26, 32, 30, 0.2)
+  background: linear-gradient(270deg,
+    rgba(99, 102, 241, 0.2),
+    rgba(14, 165, 233, 0.2),
+    rgba(244, 114, 182, 0.2),
+    rgba(30, 41, 59, 0.2)
   );
   background-size: 800% 800%;
   animation: gradient-animation 30s ease infinite; /* Ajuste de velocidad */
 }
 
 @keyframes gradient-animation-reverse {
-  0% {
-    background-position: 100% 50%;
+    0% {
+      background-position: 100% 50%;
+    }
+    50% {
+      background-position: 0% 50%;
+    }
+    100% {
+      background-position: 100% 50%;
+    }
   }
-  50% {
-    background-position: 0% 50%;
-  }main
-  100% {
-    background-position: 100% 50%;
-  }
-}
 
 .animated-background-reverse {
   width: 100%;
   height: 100%; /* O 100% si deseas que cubra todo el contenido */
-  background: linear-gradient(270deg, 
-    rgba(255, 102, 153, 0.2), 
-    rgba(51, 125, 137, 0.2), 
-    rgba(255, 204, 153, 0.2), 
-    rgba(51, 109, 89, 0.2)
+  background: linear-gradient(270deg,
+    rgba(99, 102, 241, 0.2),
+    rgba(14, 165, 233, 0.2),
+    rgba(244, 114, 182, 0.2),
+    rgba(30, 41, 59, 0.2)
   );
   background-size: 800% 800%;
   animation: gradient-animation-reverse 30s ease infinite; /* Ajuste de velocidad */
@@ -120,11 +122,12 @@ body {
   margin: 2%;
   font-size: 1.5rem;
   color: var(--color-primary);
-  transition: color 0.3s;
+  transition: color 0.3s, transform 0.3s;
 }
 
 .social-button:hover {
   color: var(--color-accent);
+  transform: scale(1.1);
 }
 
 footer {
@@ -137,4 +140,6 @@ footer {
   bottom: 0;
   width: 100%;
   transition: opacity 0.5s ease; /* Transición suave para la opacidad */
+  backdrop-filter: blur(10px);
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
 }
