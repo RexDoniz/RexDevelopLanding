@@ -50,7 +50,7 @@ export default {
 @import './assets/main.css';
 
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Inter', Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -80,10 +80,11 @@ body, html {
   margin: 0 10px;
   font-size: 1.5rem;
   color: var(--color-primary);
-  transition: color 0.3s;
+  transition: color 0.3s, transform 0.3s;
 }
 
 .social-button:hover {
   color: var(--color-accent);
+  transform: scale(1.1);
 }
 </style>
