@@ -2,7 +2,7 @@
 
 ## Changes Made
 
-The footer component has been modified to address the issue: "esta muy alto, podemoms omitir los enlases ya tenemos el menu" (it's too tall, we can omit the links since we already have the menu).
+The footer component has been modified to address the issue: "esta muy alto, podemos omitir los enlaces ya tenemos el menu" (it's too tall, we can omit the links since we already have the menu).
 
 ### Removed Elements
 - Removed the navigation links section (`footer-links` div) since these links are already present in the Header menu

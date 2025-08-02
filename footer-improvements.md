@@ -3,7 +3,7 @@
 ## Changes Made
 
 1. **Enhanced Layout Structure**:
-   - Reorganized the footer into logical sections (company info, navigation links, social media)
+   - Reorganized the footer into two logical sections: corporate information and social media links
    - Added a separate bottom section for copyright information
    - Implemented a responsive flexbox layout that adapts to different screen sizes
 
@@ -16,7 +16,7 @@
 
 3. **Content Enhancements**:
    - Added company tagline
-   - Included navigation links matching the site structure
+   - Ensured content is limited to corporate information and social media links
    - Updated copyright year to 2025
    - Added section headings for better organization
 
