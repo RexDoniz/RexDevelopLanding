@@ -231,6 +231,21 @@ onBeforeUnmount(() => {
 }
 
 /* Responsive behavior */
+@media (max-width: 600px) {
+  .main-header {
+    padding: 0.5rem 1rem;
+  }
+
+  .avatar {
+    width: 40px;
+    height: 40px;
+  }
+
+  .rexdevelop-text {
+    font-size: 1.5rem;
+  }
+}
+
 @media (max-width: 900px) {
   .nav-list { display: none; }
   .menu-toggle { display: block; }

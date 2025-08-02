@@ -93,7 +93,6 @@ body {
       background-position: 100% 50%;
     }
   }
-}
 
 
 .animated-background-reverse {
@@ -144,4 +143,20 @@ footer {
   transition: opacity 0.5s ease; /* Transición suave para la opacidad */
   backdrop-filter: blur(10px);
   box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Ajustes responsivos globales para pantallas pequeñas */
+@media (max-width: 600px) {
+  main {
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+
+  section {
+    padding: 1.5rem 1rem;
+  }
+
+  .rexdevelop-text {
+    font-size: 1.5rem;
+  }
 }
