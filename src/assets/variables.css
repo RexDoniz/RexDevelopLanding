@@ -1,9 +1,11 @@
 
+/* Paleta de colores modernizada */
 :root {
-    --color-primary: #FF6699;
-    --color-secondary: #337D89;
-    --color-background: #2A2A2A;
-    --color-accent: #FFCC99;
-    --color-detail: #336D59;
+    --color-primary: #6366f1; /* Indigo 500 */
+    --color-secondary: #0ea5e9; /* Sky 500 */
+    --color-background: #f8fafc; /* Slate 50 */
+    --color-accent: #f472b6; /* Pink 400 */
+    --color-detail: #1e293b; /* Slate 800 */
+    --color-text: #0f172a; /* Slate 900 */
   }
   
