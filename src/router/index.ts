@@ -5,7 +5,7 @@ import ContactView from '../components/Contact.vue';
 import ServicesView from '../components/Services.vue';
 
 const DEFAULT_TITLE = 'RexDevelop – Soluciones en Desarrollo, Marketing y Contabilidad';
-const DEFAULT_DESC = 'RexDevelop es tu socio digital en Tonalá y Guadalajara. Especialistas en desarrollo de software, marketing digital y servicios de contabilidad.';
+const DEFAULT_DESC = 'RexDevelop es tu socio digital en Loma Dorada (Tonalá, Jalisco) y Guadalajara. Especialistas en desarrollo de software, marketing digital y servicios de contabilidad.';
 const BASE_URL = 'https://rexdoniz.github.io/RexDevelopLanding';
 
 const routes = [

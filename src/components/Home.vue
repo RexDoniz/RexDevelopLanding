@@ -5,6 +5,7 @@
       <div class="hero-content reveal">
         <h1 id="site-title" class="glow rexdevelop-text">RexDevelop</h1>
         <p class="hero-tagline">Innovación en Desarrollo, Marketing y Contabilidad para tu empresa.</p>
+        <p class="hero-location">Atendemos Loma Dorada (Tonalá, Jalisco) y Guadalajara.</p>
         <div class="hero-cta">
           <RouterLink to="/contact" aria-label="Contáctanos">
             <Button label="Contáctanos" icon="pi pi-send" severity="primary" rounded />
