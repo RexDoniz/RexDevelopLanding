@@ -1,64 +1,76 @@
 <template>
   <footer role="contentinfo" aria-label="Pie de página">
-    <div class="footer-content">
-      <div class="footer-logo">
-        <h3 class="company-name">RexDevelop</h3>
-        <p class="tagline">Soluciones digitales innovadoras</p>
-      </div>
-      <div class="social-container">
-        <h4>Síguenos</h4>
-        <div class="social-buttons">
-          <a href="https://www.facebook.com/rexdevelop" target="_blank" rel="noopener noreferrer" class="social-button facebook" aria-label="Facebook">
-            <i class="fab fa-facebook-f" aria-hidden="true"></i>
-            <span class="sr-only">Facebook</span>
-          </a>
-          <a href="https://twitter.com/rexdevelop" target="_blank" rel="noopener noreferrer" class="social-button twitter" aria-label="Twitter/X">
-            <i class="fab fa-x-twitter" aria-hidden="true"></i>
-            <span class="sr-only">Twitter/X</span>
-          </a>
-          <a href="https://www.instagram.com/rexdevelop" target="_blank" rel="noopener noreferrer" class="social-button instagram" aria-label="Instagram">
-            <i class="fab fa-instagram" aria-hidden="true"></i>
-            <span class="sr-only">Instagram</span>
-          </a>
-          <a href="mailto:hola@rexdevelop.com" target="_blank" rel="noopener noreferrer" class="social-button mail" aria-label="Email">
-            <i class="fas fa-envelope" aria-hidden="true"></i>
-            <span class="sr-only">Email</span>
-          </a>
+    <div class="footer-inner">
+      <div class="footer-content">
+        <div class="footer-logo">
+          <h3 class="company-name">RexDevelop</h3>
+          <p class="tagline">Soluciones digitales que impulsan tu crecimiento</p>
+        </div>
+        <div class="social-container">
+          <h4>Síguenos en redes</h4>
+          <div class="social-buttons">
+            <a href="https://www.facebook.com/rexdevelop" target="_blank" rel="noopener noreferrer" class="social-button facebook" aria-label="Facebook">
+              <i class="fab fa-facebook-f" aria-hidden="true"></i>
+              <span class="sr-only">Facebook</span>
+            </a>
+            <a href="https://twitter.com/rexdevelop" target="_blank" rel="noopener noreferrer" class="social-button twitter" aria-label="Twitter/X">
+              <i class="fab fa-x-twitter" aria-hidden="true"></i>
+              <span class="sr-only">Twitter/X</span>
+            </a>
+            <a href="https://www.instagram.com/rexdevelop" target="_blank" rel="noopener noreferrer" class="social-button instagram" aria-label="Instagram">
+              <i class="fab fa-instagram" aria-hidden="true"></i>
+              <span class="sr-only">Instagram</span>
+            </a>
+            <a href="mailto:hola@rexdevelop.com" target="_blank" rel="noopener noreferrer" class="social-button mail" aria-label="Email">
+              <i class="fas fa-envelope" aria-hidden="true"></i>
+              <span class="sr-only">Email</span>
+            </a>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="footer-bottom">
-      <span class="copyright">&copy; {{ new Date().getFullYear() }} RexDevelop. Todos los derechos reservados.</span>
+      <div class="footer-bottom">
+        <span class="copyright">&copy; {{ new Date().getFullYear() }} RexDevelop. Todos los derechos reservados.</span>
+      </div>
     </div>
   </footer>
 </template>
 
 <script setup lang="ts">
-// Si quieres que el año sea dinámico en Vue3:
+// No JS necesario para el footer fijo al final del layout
 </script>
 
 <style scoped>
 @import '../assets/variables.css';
 
+/* Footer ocupa ancho completo, pero centra su contenido a 900px */
 footer {
+  width: 100%;
+  position: static; /* se apoya en el layout flex de #app */
+  bottom: auto;
+  left: auto;
+  transform: none;
+  opacity: 1;
+  filter: none;
+  z-index: auto;
+  background: transparent; /* el fondo real va en .footer-inner */
+}
+
+.footer-inner {
+  margin: 0 auto;
+  width: min(100%, 900px);
   backdrop-filter: blur(14px) saturate(130%);
   background: rgba(34, 39, 54, 0.79);
   color: #fff;
   border-radius: 16px 16px 0 0;
   padding: 0.5rem 2rem 0.15rem;
-  position: fixed;
-  left: 50%;
-  bottom: 0;
-  transform: translateX(-50%);
-  width: min(100%, 900px);
   box-shadow: 0 -6px 36px 4px rgba(25, 21, 56, 0.12), 0 -2px 20px rgba(70,255,255,0.06);
-  z-index: 50;
   box-sizing: border-box;
   border-top: 1.5px solid var(--color-accent);
   border-left: 0.5px solid rgba(255,255,255,0.01);
   border-right: 0.5px solid rgba(255,255,255,0.01);
 }
 
+/* Contenido del footer */
 .footer-content {
   display: flex;
   justify-content: space-between;
@@ -143,6 +155,11 @@ footer {
   box-shadow: 0 4px 16px 0 var(--color-accent), 0 2px 14px 0 var(--color-primary);
   transform: scale(1.09) translateY(-2px) rotate(-2deg);
 }
+.social-button:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(255,102,153,0.25), 0 4px 16px 0 var(--color-accent), 0 2px 14px 0 var(--color-primary);
+}
 
 .footer-bottom {
   border-top: 1.5px solid rgba(255,255,255,0.12);
@@ -163,19 +180,24 @@ footer {
   clip: rect(1px, 1px, 1px, 1px); white-space: nowrap;
 }
 
+/* Animación reutilizada del título */
 @keyframes flicker {
   0%, 100% { opacity: 1; text-shadow: 0 0 5px var(--color-accent); }
   60% { opacity: 0.7; text-shadow: 0 0 12px var(--color-primary); }
 }
 
+/* Respeto a preferencias de movimiento reducido */
+@media (prefers-reduced-motion: reduce) {
+  .company-name { animation: none !important; filter: none; }
+  .social-button { transition: none !important; transform: none !important; }
+  .social-button:hover { transform: none !important; box-shadow: 0 2px 10px 0 rgba(77, 180, 255, 0.09); }
+}
+
 @media (max-width: 700px) {
-  footer {
+  .footer-inner {
     border-radius: 10px 10px 0 0;
     padding: 0.6rem 0.4rem 0.14rem;
     width: 100vw;
-    left: 0;
-    transform: none;
-    min-width: 0;
   }
   .footer-content {
     flex-direction: column;

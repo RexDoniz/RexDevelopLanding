@@ -2,11 +2,13 @@
   <div id="app">
     <Header />
     <main class="animated-background">
-      <transition name="route-fade" mode="out-in">
-        <router-view />
-      </transition>
+      <router-view v-slot="{ Component }">
+        <transition name="route-fade" mode="out-in">
+          <component :is="Component" />
+        </transition>
+      </router-view>
     </main>
-    <Footer ref="footer" />
+    <Footer />
   </div>
 </template>
 
@@ -20,31 +22,6 @@ export default {
     Header,
     Footer,
   },
-  methods: {
-    handleScroll() {
-      const footer = this.$refs.footer.$el;
-      const scrollTop = window.scrollY;
-      const windowHeight = window.innerHeight;
-      const fullHeight = document.documentElement.scrollHeight;
-
-      const scrollPosition = scrollTop + windowHeight;
-      const triggerPoint = fullHeight - (fullHeight * 0.20); // 80% del final de la página
-
-      if (scrollPosition >= triggerPoint) {
-        const opacity = Math.min(1, (scrollPosition - triggerPoint) / (fullHeight * 0.20));
-        footer.style.opacity = opacity;
-      } else {
-        footer.style.opacity = 0;
-      }
-    }
-  },
-  mounted() {
-    window.addEventListener('scroll', this.handleScroll);
-    this.handleScroll(); // Ejecutar una vez para asegurarse de que el estado inicial es correcto
-  },
-  beforeUnmount() {
-    window.removeEventListener('scroll', this.handleScroll);
-  }
 };
 </script>
 
