@@ -75,7 +75,7 @@ onBeforeUnmount(() => {
   background: rgba(34, 39, 54, 0.98);
   color: var(--color-text);
   position: fixed;
-  width: 100vw;
+  width: 100%;
   top: 0;
   left: 0;
   z-index: 1200;

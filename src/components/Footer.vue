@@ -50,7 +50,7 @@ footer {
   left: 50%;
   bottom: 0;
   transform: translateX(-50%);
-  width: min(100vw, 900px);
+  width: min(100%, 900px);
   box-shadow: 0 -6px 36px 4px rgba(25, 21, 56, 0.12), 0 -2px 20px rgba(70,255,255,0.06);
   z-index: 50;
   box-sizing: border-box;
@@ -172,8 +172,8 @@ footer {
   footer {
     border-radius: 10px 10px 0 0;
     padding: 0.6rem 0.4rem 0.14rem;
-    width: 99vw;
-    left: 0.5vw;
+    width: 100vw;
+    left: 0;
     transform: none;
     min-width: 0;
   }
@@ -184,6 +184,7 @@ footer {
     gap: 0.5rem;
   }
   .social-buttons { justify-content: center; }
+  .social-button { width: 40px; height: 40px; font-size: 1.2rem; }
   .footer-logo, .social-container { text-align: center; }
 }
 </style>

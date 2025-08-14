@@ -2,7 +2,9 @@
   <div id="app">
     <Header />
     <main class="animated-background">
-      <router-view />
+      <transition name="route-fade" mode="out-in">
+        <router-view />
+      </transition>
     </main>
     <Footer ref="footer" />
   </div>

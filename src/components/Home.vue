@@ -2,21 +2,25 @@
   <div id="home" class="page-content">
     <!-- Hero Section -->
     <section class="hero animated-background-reverse glass-hero" aria-labelledby="site-title">
-      <div class="hero-content">
+      <div class="hero-content reveal">
         <h1 id="site-title" class="glow rexdevelop-text">RexDevelop</h1>
         <p class="hero-tagline">Innovación en Desarrollo, Marketing y Contabilidad para tu empresa.</p>
         <div class="hero-cta">
-          <RouterLink to="/contact" class="btn-primary" aria-label="Contáctanos">Contáctanos</RouterLink>
-          <RouterLink to="/services" class="btn-secondary" aria-label="Ver nuestros servicios">Nuestros Servicios</RouterLink>
+          <RouterLink to="/contact" aria-label="Contáctanos">
+            <Button label="Contáctanos" icon="pi pi-send" severity="primary" rounded />
+          </RouterLink>
+          <RouterLink to="/services" aria-label="Ver nuestros servicios">
+            <Button label="Nuestros Servicios" icon="pi pi-briefcase" severity="secondary" rounded outlined />
+          </RouterLink>
         </div>
       </div>
     </section>
 
     <!-- Servicios -->
     <section class="services glass-section" aria-labelledby="services-title">
-      <h2 id="services-title" class="section-title">¿Qué hacemos?</h2>
+          <h2 id="services-title" class="section-title reveal">¿Qué hacemos?</h2>
       <div class="service-list">
-        <div class="service-card glass-card" v-for="service in serviceData" :key="service.title">
+        <div class="service-card glass-card reveal" v-for="service in serviceData" :key="service.title">
           <div class="service-icon" :style="{ color: service.color }" :aria-label="service.title" role="img">
             <i :class="service.icon"></i>
           </div>
@@ -31,11 +35,11 @@
 
     <!-- About -->
     <section class="about glass-section" aria-labelledby="about-title">
-      <h2 id="about-title" class="section-title">¿Quiénes somos?</h2>
+          <h2 id="about-title" class="section-title reveal">¿Quiénes somos?</h2>
       <p class="section-intro">
         Un equipo multidisciplinario que combina tecnología, creatividad y experiencia para impulsar tu negocio. Conoce nuestra esencia y por qué podemos ser tu mejor socio digital.
       </p>
-      <div class="about-card glass-card">
+      <div class="about-card glass-card reveal">
         <div class="about-image">
           <i class="fas fa-users about-icon" aria-label="Equipo RexDevelop"></i>
         </div>
@@ -45,7 +49,7 @@
             RexDevelop está formado por especialistas en desarrollo de software, marketing digital y contabilidad. Nuestra pasión es encontrar soluciones personalizadas y eficaces para cada cliente, manteniéndonos siempre a la vanguardia de las tendencias tecnológicas.
           </p>
           <div class="about-services">
-            <div class="about-service-item glass-service" v-for="detail in aboutServices" :key="detail.title">
+            <div class="about-service-item glass-service reveal" v-for="detail in aboutServices" :key="detail.title">
               <i :class="detail.icon + ' service-detail-icon'" aria-hidden="true"></i>
               <div>
                 <h4>{{ detail.title }}</h4>
@@ -56,8 +60,8 @@
           <p>
             Además, creemos en la formación continua y el aprendizaje colaborativo, asegurando que nuestros servicios evolucionen junto a las necesidades del mercado.
           </p>
-          <RouterLink to="/about" class="btn-primary" aria-label="Saber más sobre nosotros">
-            Conoce más sobre nosotros
+          <RouterLink to="/about" aria-label="Saber más sobre nosotros">
+            <Button label="Conoce más sobre nosotros" icon="pi pi-info-circle" severity="help" rounded />
           </RouterLink>
         </div>
       </div>
@@ -65,11 +69,11 @@
 
     <!-- Contact Call -->
     <section class="contact-call animated-background-reverse glass-contact" aria-labelledby="contact-title">
-      <div class="contact-call-content">
+      <div class="contact-call-content reveal">
         <h2 id="contact-title">¿Listo para llevar tu negocio al siguiente nivel?</h2>
         <p>Te ayudamos a digitalizar tu empresa y hacerla crecer. Cuéntanos tu proyecto, te responderemos en menos de 24 horas.</p>
-        <RouterLink to="/contact" class="btn-accent" aria-label="Contactar a RexDevelop">
-          Contáctanos ahora
+        <RouterLink to="/contact" aria-label="Contactar a RexDevelop">
+          <Button label="Contáctanos ahora" icon="pi pi-comments" severity="success" rounded />
         </RouterLink>
       </div>
     </section>
@@ -77,6 +81,8 @@
 </template>
 
 <script setup lang="ts">
+import { onMounted, onBeforeUnmount, nextTick } from 'vue'
+
 const serviceData = [
   {
     title: 'Desarrollo y TI',
@@ -118,6 +124,35 @@ const aboutServices = [
     icon: 'fas fa-calculator'
   }
 ];
+
+let observer: IntersectionObserver | null = null;
+
+onMounted(async () => {
+  await nextTick();
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    // If user prefers reduced motion, reveal everything immediately
+    document.querySelectorAll('.reveal').forEach(el => el.classList.add('in-view'));
+    return;
+  }
+
+  observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+        if (observer) observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -10% 0px' });
+
+  document.querySelectorAll('.reveal').forEach((el) => observer?.observe(el));
+});
+
+onBeforeUnmount(() => {
+  if (observer) {
+    observer.disconnect();
+    observer = null;
+  }
+});
 </script>
 <style scoped>
 @import '../assets/variables.css';
@@ -155,7 +190,7 @@ const aboutServices = [
 /* Hero Section */
 .hero {
   padding: 6rem 2rem 3.5rem 2rem;
-  width: 98vw;
+  width: 100%;
   max-width: 1200px;
   margin-top: 1rem;
   position: relative;
