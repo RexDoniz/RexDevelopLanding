@@ -1,3 +1,33 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Asegurarse que los estilos de PrimeVue tengan prioridad */
+.p-component {
+    font-family: var(--font-family);
+}
+
+/* Estilos personalizados para PrimeVue */
+.p-button {
+    margin: 0.5rem 0;
+}
+
+.p-card {
+    margin-bottom: 1rem;
+}
+
+.p-inputtext, .p-textarea {
+    width: 100%;
+}
+
+/* Ajustes para asegurar que los inputs de PrimeVue se vean bien */
+.p-inputtext:enabled:focus {
+    box-shadow: 0 0 0 2px #fff, 0 0 0 4px var(--primary-color);
+}
+
+/* Asegurar que los mensajes de error se vean correctamente */
+.p-error {
+    color: var(--red-500);
+    margin-top: 0.25rem;
+    font-size: 0.875rem;
+}

@@ -5,13 +5,22 @@
       <h1 class="text-2xl font-bold text-pink-500">RexDevelop</h1>
     </RouterLink>
 
-    <nav class="hidden md:flex items-center" aria-label="Navegación principal">
+    <nav class="hidden md:flex items-center gap-6" aria-label="Navegación principal">
       <ul class="flex gap-8 list-none m-0 p-0">
         <li><RouterLink to="/" class="text-white no-underline font-semibold hover:text-pink-500">Inicio</RouterLink></li>
         <li><RouterLink to="/services" class="text-white no-underline font-semibold hover:text-pink-500">Servicios</RouterLink></li>
         <li><RouterLink to="/about" class="text-white no-underline font-semibold hover:text-pink-500">Nosotros</RouterLink></li>
         <li><RouterLink to="/contact" class="text-white no-underline font-semibold hover:text-pink-500">Contacto</RouterLink></li>
       </ul>
+      <InputSwitch 
+        v-model="isDark"
+        @change="toggleTheme"
+        :pt="{
+          root: { class: 'mr-2' },
+          slider: { class: isDark ? 'bg-gray-700' : 'bg-gray-300' }
+        }"
+      />
+      <i :class="isDark ? 'pi pi-moon' : 'pi pi-sun'" class="text-xl"></i>
     </nav>
 
     <button
@@ -42,14 +51,27 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted, computed } from 'vue'
+import { useStore } from 'vuex'
+import InputSwitch from 'primevue/inputswitch'
 
+const store = useStore()
 const isMobileMenuOpen = ref(false)
+const isDark = computed(() => store.state.theme.isDark)
+
+function toggleTheme() {
+  store.dispatch('theme/toggleTheme')
+}
 
 function toggleMobileMenu() {
   isMobileMenuOpen.value = !isMobileMenuOpen.value
 }
+
 function closeMobileMenu() {
   isMobileMenuOpen.value = false
 }
+
+onMounted(() => {
+  store.dispatch('theme/init')
+})
 </script>

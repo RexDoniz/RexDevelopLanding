@@ -2,55 +2,66 @@
   <div class="py-16 px-4 text-center">
     <h2 class="text-3xl font-bold text-indigo-600 mb-4">Contacto</h2>
     <p class="text-lg text-cyan-600 mb-8 max-w-2xl mx-auto">Si tienes alguna pregunta, no dudes en ponerte en contacto con nosotros.</p>
-    <div v-if="formSubmitted" class="max-w-md mx-auto bg-green-100 border-l-4 border-green-500 text-green-700 p-4 rounded-md shadow-md">
-      <h3 class="text-xl font-bold mb-2">¡Gracias por tu mensaje!</h3>
-      <p>Nos pondremos en contacto contigo lo antes posible.</p>
-      <button @click="resetForm" class="mt-4 bg-green-500 text-white font-bold py-2 px-4 rounded hover:bg-green-700 transition-colors">Enviar otro mensaje</button>
+    <Toast />
+    <div v-if="formSubmitted" class="max-w-md mx-auto">
+      <Message severity="success" :life="3000">
+        <template #messageicon><i class="pi pi-check-circle"></i></template>
+        <h3 class="text-xl font-bold mb-2">¡Gracias por tu mensaje!</h3>
+        <p>Nos pondremos en contacto contigo lo antes posible.</p>
+      </Message>
+      <Button @click="resetForm" label="Enviar otro mensaje" icon="pi pi-plus" severity="success" class="mt-4" />
     </div>
-    <form v-else @submit.prevent="submitForm" aria-label="Formulario de contacto" class="max-w-lg mx-auto text-left bg-white p-8 rounded-lg shadow-md">
-      <div class="mb-6">
-        <label for="name" class="block mb-2 font-medium text-gray-700">Nombre</label>
-        <input 
-          type="text" 
-          id="name" 
-          v-model="form.name" 
-          required 
-          aria-required="true"
-          class="w-full p-3 border rounded-md"
-          :class="{ 'border-red-500': errors.name }"
-        />
-        <span v-if="errors.name" class="text-red-500 text-sm mt-1">{{ errors.name }}</span>
-      </div>
-      <div class="mb-6">
-        <label for="email" class="block mb-2 font-medium text-gray-700">Correo Electrónico</label>
-        <input 
-          type="email" 
-          id="email" 
-          v-model="form.email" 
-          required 
-          aria-required="true"
-          class="w-full p-3 border rounded-md"
-          :class="{ 'border-red-500': errors.email }"
-        />
-        <span v-if="errors.email" class="text-red-500 text-sm mt-1">{{ errors.email }}</span>
-      </div>
-      <div class="mb-6">
-        <label for="message" class="block mb-2 font-medium text-gray-700">Mensaje</label>
-        <textarea 
-          id="message" 
-          v-model="form.message" 
-          rows="5" 
-          required
-          aria-required="true"
-          class="w-full p-3 border rounded-md"
-          :class="{ 'border-red-500': errors.message }"
-        ></textarea>
-        <span v-if="errors.message" class="text-red-500 text-sm mt-1">{{ errors.message }}</span>
-      </div>
-      <button type="submit" :disabled="isSubmitting" class="w-full bg-indigo-600 text-white font-bold py-3 px-4 rounded-md hover:bg-indigo-700 disabled:bg-gray-400 transition-colors">
-        <span v-if="isSubmitting">Enviando...</span>
-        <span v-else>Enviar</span>
-      </button>
+    <form v-else @submit.prevent="submitForm" aria-label="Formulario de contacto" class="max-w-lg mx-auto text-left p-8">
+      <Card>
+        <template #content>
+          <div class="mb-6">
+            <label for="name" class="block mb-2 font-medium text-gray-700">Nombre</label>
+            <InputText
+              id="name"
+              v-model="form.name"
+              required
+              aria-required="true"
+              class="w-full"
+              :class="{ 'p-invalid': errors.name }"
+            />
+            <small v-if="errors.name" class="p-error">{{ errors.name }}</small>
+          </div>
+          <div class="mb-6">
+            <label for="email" class="block mb-2 font-medium text-gray-700">Correo Electrónico</label>
+            <InputText
+              type="email"
+              id="email"
+              v-model="form.email"
+              required
+              aria-required="true"
+              class="w-full"
+              :class="{ 'p-invalid': errors.email }"
+            />
+            <small v-if="errors.email" class="p-error">{{ errors.email }}</small>
+          </div>
+          <div class="mb-6">
+            <label for="message" class="block mb-2 font-medium text-gray-700">Mensaje</label>
+            <InputTextarea
+              id="message"
+              v-model="form.message"
+              rows="5"
+              required
+              aria-required="true"
+              class="w-full"
+              :class="{ 'p-invalid': errors.message }"
+            />
+            <small v-if="errors.message" class="p-error">{{ errors.message }}</small>
+          </div>
+          <Button
+            type="submit"
+            :loading="isSubmitting"
+            :label="isSubmitting ? 'Enviando...' : 'Enviar'"
+            icon="pi pi-send"
+            severity="primary"
+            class="w-full"
+          />
+        </template>
+      </Card>
     </form>
   </div>
 </template>
