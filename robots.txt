@@ -1,0 +1,5 @@
+# Robots configuration for RexDevelopLanding
+User-agent: *
+Allow: /
+
+Sitemap: https://rexdoniz.github.io/RexDevelopLanding/sitemap.xml

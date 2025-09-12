@@ -1,0 +1,8 @@
+{
+  "name": "RexDevelop",
+  "short_name": "RexDevelop",
+  "start_url": "/RexDevelopLanding/",
+  "display": "standalone",
+  "background_color": "#222736",
+  "theme_color": "#222736"
+}
