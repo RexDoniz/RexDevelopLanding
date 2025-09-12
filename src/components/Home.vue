@@ -1,12 +1,12 @@
 <template>
-  <div id="home" class="page-content">
+  <div id="home" class="flex flex-col items-center w-full">
     <!-- Hero Section -->
-    <section class="hero animated-background-reverse" aria-labelledby="site-title">
-      <div class="hero-content reveal">
-        <h1 id="site-title" class="rexdevelop-text">RexDevelop</h1>
-        <p class="hero-tagline">Innovación en Desarrollo, Marketing y Contabilidad para tu empresa.</p>
-        <p class="hero-location">Atendemos Loma Dorada (Tonalá, Jalisco) y Guadalajara.</p>
-        <div class="hero-cta">
+    <section class="w-full max-w-6xl mt-4 relative overflow-hidden rounded-lg p-8 bg-gray-100" aria-labelledby="site-title">
+      <div class="relative z-10 max-w-3xl mx-auto text-center">
+        <h1 id="site-title" class="text-4xl font-bold text-indigo-600">RexDevelop</h1>
+        <p class="text-xl text-cyan-600 mt-4">Innovación en Desarrollo, Marketing y Contabilidad para tu empresa.</p>
+        <p class="text-lg text-gray-600 mt-2">Atendemos Loma Dorada (Tonalá, Jalisco) y Guadalajara.</p>
+        <div class="flex justify-center gap-4 mt-8">
           <RouterLink to="/contact" aria-label="Contáctanos">
             <Button label="Contáctanos" icon="pi pi-send" severity="primary" rounded />
           </RouterLink>
@@ -18,23 +18,23 @@
     </section>
 
     <!-- Servicios -->
-    <section class="services" aria-labelledby="services-title">
-          <h2 id="services-title" class="section-title reveal">¿Qué hacemos?</h2>
-      <div class="service-list">
-        <Card v-for="service in serviceData" :key="service.title" class="service-card reveal">
+    <section class="w-full max-w-6xl py-16" aria-labelledby="services-title">
+      <h2 id="services-title" class="text-3xl font-bold text-indigo-600 text-center mb-8">¿Qué hacemos?</h2>
+      <div class="flex justify-center gap-8 flex-wrap">
+        <Card v-for="service in serviceData" :key="service.title" class="w-80 text-center bg-white rounded-lg shadow-md hover:shadow-lg transform hover:-translate-y-2 transition-all duration-300">
           <template #header>
-            <div class="service-icon" :style="{ color: service.color }">
+            <div class="text-5xl pt-6 mb-4" :style="{ color: service.color }">
               <i :class="service.icon"></i>
             </div>
           </template>
           <template #title>
-            <h3 class="service-name">{{ service.title }}</h3>
+            <h3 class="text-xl font-bold text-indigo-600">{{ service.title }}</h3>
           </template>
           <template #content>
-            <p class="service-desc">{{ service.desc }}</p>
+            <p class="text-base text-cyan-600">{{ service.desc }}</p>
           </template>
           <template #footer>
-            <RouterLink :to="service.link" class="service-link" aria-label="Ver más sobre {{ service.title }}">
+            <RouterLink :to="service.link" aria-label="Ver más sobre {{ service.title }}" class="no-underline">
               <Button label="Ver más" icon="pi pi-arrow-right" text />
             </RouterLink>
           </template>
@@ -43,30 +43,30 @@
     </section>
 
     <!-- About -->
-    <section class="about glass-section" aria-labelledby="about-title">
-          <h2 id="about-title" class="section-title reveal">¿Quiénes somos?</h2>
-      <p class="section-intro">
+    <section class="w-full max-w-6xl py-16" aria-labelledby="about-title">
+      <h2 id="about-title" class="text-3xl font-bold text-indigo-600 text-center mb-4">¿Quiénes somos?</h2>
+      <p class="max-w-3xl mx-auto text-center text-cyan-600 text-lg mb-8">
         Un equipo multidisciplinario que combina tecnología, creatividad y experiencia para impulsar tu negocio. Conoce nuestra esencia y por qué podemos ser tu mejor socio digital.
       </p>
-      <div class="about-card glass-card reveal">
-        <div class="about-image">
-          <i class="fas fa-users about-icon" aria-label="Equipo RexDevelop"></i>
+      <div class="flex flex-col items-center text-left p-10 max-w-4xl mx-auto bg-white rounded-lg shadow-md">
+        <div class="w-full flex justify-center items-center p-8 mb-8 bg-gradient-to-r from-indigo-100 to-cyan-100 rounded-t-lg">
+          <i class="fas fa-users text-6xl text-indigo-600" aria-label="Equipo RexDevelop"></i>
         </div>
-        <div class="about-card-content">
-          <h3>Sobre Nosotros</h3>
-          <p>
+        <div class="w-full">
+          <h3 class="text-2xl font-bold text-indigo-600 mb-4">Sobre Nosotros</h3>
+          <p class="text-lg text-cyan-600 mb-6">
             RexDevelop está formado por especialistas en desarrollo de software, marketing digital y contabilidad. Nuestra pasión es encontrar soluciones personalizadas y eficaces para cada cliente, manteniéndonos siempre a la vanguardia de las tendencias tecnológicas.
           </p>
-          <div class="about-services">
-            <div class="about-service-item glass-service reveal" v-for="detail in aboutServices" :key="detail.title">
-              <i :class="detail.icon + ' service-detail-icon'" aria-hidden="true"></i>
+          <div class="flex flex-col gap-8 my-8">
+            <div class="flex gap-6 items-start bg-gray-50 p-6 rounded-lg shadow-sm" v-for="detail in aboutServices" :key="detail.title">
+              <i :class="detail.icon + ' text-4xl text-indigo-600 shrink-0'"></i>
               <div>
-                <h4>{{ detail.title }}</h4>
-                <p>{{ detail.desc }}</p>
+                <h4 class="text-xl font-bold text-pink-500 mb-2">{{ detail.title }}</h4>
+                <p class="text-lg text-cyan-600">{{ detail.desc }}</p>
               </div>
             </div>
           </div>
-          <p>
+          <p class="text-lg text-cyan-600 mb-6">
             Además, creemos en la formación continua y el aprendizaje colaborativo, asegurando que nuestros servicios evolucionen junto a las necesidades del mercado.
           </p>
           <RouterLink to="/about" aria-label="Saber más sobre nosotros">
@@ -76,11 +76,31 @@
       </div>
     </section>
 
+    <!-- FAQ SEO -->
+    <section class="w-full max-w-6xl py-16" aria-labelledby="faq-seo-title">
+      <h2 id="faq-seo-title" class="text-3xl font-bold text-indigo-600 text-center mb-8">SEO: ¿Qué búsquedas favorecen el resultado?</h2>
+      <div class="p-8 bg-white rounded-lg shadow-md" role="list">
+        <article role="listitem">
+          <h3 class="flex items-center gap-2 text-xl font-bold text-indigo-600 mb-4"><i class="fas fa-magnifying-glass-chart"></i> Según el SEO, ¿qué tipo de búsquedas favorecerán al resultado?</h3>
+          <div class="text-left">
+            <ul class="list-disc pl-6 mb-4">
+              <li class="mb-2"><strong>Consultas de intención clara</strong>: transaccionales ("contratar desarrollo web"), locales ("agencia marketing en Tonalá", "contabilidad en Guadalajara"), y navegacionales (marca: "RexDevelop").</li>
+              <li class="mb-2"><strong>Palabras clave long-tail</strong>: más específicas y con menor competencia ("desarrollo de software a medida en Jalisco").</li>
+              <li class="mb-2"><strong>Consultas problema-solución</strong>: formuladas como necesidad ("cómo facturar electrónicamente", "mejorar posicionamiento SEO local").</li>
+              <li class="mb-2"><strong>Comparativas y de valor</strong>: ("mejor agencia de marketing digital en GDL", "desarrollo vs. plantilla para e‑commerce").</li>
+              <li class="mb-2"><strong>Consultas con modificadores</strong>: "cerca de mí", por colonia o municipio ("Loma Dorada Tonalá"), por sector ("para restaurantes", "para pymes").</li>
+            </ul>
+            <p class="text-base text-gray-600">Para potenciar estas búsquedas: optimiza títulos y descripciones, crea páginas/sections específicas por servicio y ubicación, añade datos estructurados (FAQ, LocalBusiness) y reseñas.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
     <!-- Contact Call -->
-    <section class="contact-call animated-background-reverse glass-contact" aria-labelledby="contact-title">
-      <div class="contact-call-content reveal">
-        <h2 id="contact-title">¿Listo para llevar tu negocio al siguiente nivel?</h2>
-        <p>Te ayudamos a digitalizar tu empresa y hacerla crecer. Cuéntanos tu proyecto, te responderemos en menos de 24 horas.</p>
+    <section class="w-full text-center py-16 relative overflow-hidden rounded-lg bg-gray-100" aria-labelledby="contact-title">
+      <div class="relative z-10 max-w-3xl mx-auto">
+        <h2 id="contact-title" class="text-3xl font-bold text-pink-500 mb-4">¿Listo para llevar tu negocio al siguiente nivel?</h2>
+        <p class="text-xl text-cyan-600 mb-8">Te ayudamos a digitalizar tu empresa y hacerla crecer. Cuéntanos tu proyecto, te responderemos en menos de 24 horas.</p>
         <RouterLink to="/contact" aria-label="Contactar a RexDevelop">
           <Button label="Contáctanos ahora" icon="pi pi-comments" severity="success" rounded />
         </RouterLink>
@@ -164,324 +184,3 @@ onBeforeUnmount(() => {
   }
 });
 </script>
-<style scoped>
-@import '../assets/variables.css';
-
-.page-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-}
-
-/* Hero Section */
-.hero {
-  padding: 6rem 2rem 3.5rem 2rem;
-  width: 100%;
-  max-width: 1200px;
-  margin-top: 1rem;
-  position: relative;
-  overflow: hidden;
-  border-radius: 18px;
-}
-
-/* FAQ Section */
-.faq {
-  width: 100%;
-  max-width: 1200px;
-  padding: 2rem;
-}
-.faq-content {
-  padding: 1.25rem 1.5rem;
-  background: var(--color-background);
-  border-radius: 18px;
-}
-.faq-question {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 1.2rem;
-  margin: 0 0 0.75rem 0;
-  color: var(--color-primary);
-}
-.faq-answer ul {
-  margin: 0 0 0.75rem 1.25rem;
-  padding: 0;
-  list-style: disc;
-}
-.faq-answer li {
-  margin-bottom: 0.4rem;
-  line-height: 1.5;
-}
-.faq-note {
-    font-size: 0.95rem;
-    color: var(--color-text);
-  }
-
-.hero-content {
-  position: relative;
-  z-index: 2;
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-.hero h2 {
-  font-size: 3.5rem;
-  margin-bottom: 1.5rem;
-  color: var(--color-primary);
-  letter-spacing: 2px;
-  text-transform: uppercase;
-}
-
-.hero-tagline {
-  font-size: 1.5rem;
-  color: var(--color-secondary);
-  margin-bottom: 2rem;
-  font-weight: 300;
-}
-
-.hero-cta {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  margin-top: 2rem;
-}
-
-/* Section Titles */
-.section-title {
-  font-size: 2.5rem;
-  margin-bottom: 1.5rem;
-  color: var(--color-primary);
-  position: relative;
-  display: inline-block;
-  padding-bottom: 0.5rem;
-  letter-spacing: 2px;
-}
-.section-title::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 60px;
-  height: 3px;
-  background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
-  border-radius: 3px;
-}
-
-.section-intro {
-  max-width: 800px;
-  margin: 0 auto 2rem;
-  color: var(--color-secondary);
-  font-size: 1.1rem;
-  line-height: 1.6;
-}
-
-.services, .about {
-  width: 92vw;
-  max-width: 1200px;
-  padding: 4rem 0;
-  margin: 0 auto;
-}
-
-/* Services Cards */
-.service-list {
-  display: flex;
-  justify-content: center;
-  gap: 2.2rem;
-  flex-wrap: wrap;
-}
-
-.service-card {
-  width: 300px;
-  border-radius: 16px;
-  text-align: center;
-  background: var(--color-background);
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.service-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-}
-
-.service-icon {
-  font-size: 3.1rem;
-  padding-top: 1.5rem;
-  margin-bottom: 1.3rem;
-}
-
-.service-name {
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
-  color: var(--color-primary);
-}
-
-.service-desc {
-  font-size: 1rem;
-  color: var(--color-secondary);
-  line-height: 1.6;
-  margin-bottom: 1.2rem;
-}
-
-.service-link {
-  text-decoration: none;
-}
-
-
-/* About Section */
-.about-card {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: left;
-  padding: 2.5rem 2.5rem 2rem 2.5rem;
-  max-width: 900px;
-  width: 100%;
-  margin: 2rem auto 0 auto;
-  box-sizing: border-box;
-  box-shadow: 0 6px 32px rgba(0, 0, 0, 0.08);
-  background: var(--color-background);
-  border-radius: 18px;
-}
-
-.about-image {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 2rem 0 1.5rem 0;
-  background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(14, 165, 233, 0.1) 100%);
-  border-radius: 8px 8px 0 0;
-  margin-bottom: 2rem;
-}
-
-.about-card-content {
-  padding: 0 1.3rem 1rem 1.3rem;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-@media (max-width: 700px) {
-  .about-card {
-    max-width: 100vw;
-    padding: 1.2rem 0.1rem 1.1rem 0.1rem;
-    margin: 1.2rem 0 0 0;
-  }
-  .about-card-content {
-    padding: 0 0.1rem 0.5rem 0.1rem;
-  }
-  .about-image {
-    padding: 0.7rem 0 0.6rem 0;
-    margin-bottom: 1rem;
-  }
-}
-.about-card-content h4 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-  color: var(--color-primary);
-}
-.about-card-content p {
-  font-size: 1.1rem;
-  color: var(--color-secondary);
-  line-height: 1.6;
-  margin-bottom: 1.5rem;
-}
-.about-services {
-  display: flex;
-  flex-direction: column;
-  gap: 2.2rem;
-  margin: 2rem 0;
-}
-.about-service-item {
-  display: flex;
-  gap: 1.5rem;
-  align-items: flex-start;
-  background: rgba(255,255,255,0.06);
-  padding: 1.2rem;
-  border-radius: 10px;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.07);
-  transition: box-shadow 0.2s, transform 0.22s;
-}
-.about-service-item:hover {
-  box-shadow: 0 10px 24px rgba(0,0,0,0.12), 0 4px 16px rgba(0,0,0,0.08);
-  transform: scale(1.03) translateY(-2px);
-  background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(14, 165, 233, 0.1));
-}
-.service-detail-icon {
-  font-size: 2.2rem;
-  color: var(--color-primary);
-  flex-shrink: 0;
-}
-.about-service-item h5 {
-  font-size: 1.3rem;
-  margin-bottom: 0.5rem;
-  color: var(--color-accent);
-}
-
-/* Contact Call Section */
-.contact-call {
-  color: var(--color-primary);
-  width: 100%;
-  text-align: center;
-  padding: 4rem 2rem;
-  position: relative;
-  overflow: hidden;
-  border-radius: 20px;
-}
-.contact-call-content {
-  position: relative;
-  z-index: 2;
-  max-width: 800px;
-  margin: 0 auto;
-}
-.contact-call h3 {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-  color: var(--color-accent);
-  text-shadow: 0 2px 20px var(--color-primary);
-}
-.contact-call p {
-  font-size: 1.2rem;
-  color: var(--color-secondary);
-  margin-bottom: 2rem;
-}
-
-/* Responsive adjustments */
-@media (max-width: 900px) {
-  .services, .about { padding: 3rem 0; }
-  .service-list { gap: 1.1rem; }
-  .service-card { width: 96vw; max-width: 355px; }
-  .about-card { padding: 1.5rem; }
-  .about-service-item { flex-direction: column; align-items: center; text-align: center; gap: 0.5rem; }
-  .hero h2 { font-size: 2.3rem; }
-  .hero-tagline { font-size: 1.1rem; }
-}
-
-@media (max-width: 700px) {
-  .services, .about { width: 100vw; }
-  .section-title { font-size: 1.45rem; }
-  .about-card-content h4 { font-size: 1.3rem; }
-  .hero { padding: 2.7rem 0.3rem 2rem 0.3rem; }
-  .about-image { padding: 0.9rem 0 0.7rem 0; }
-  .about-icon { font-size: 2.8rem; }
-  .contact-call { padding: 2rem 0.5rem; }
-  .about-card {
-    max-width: 100vw;
-    padding: 1.2rem 0.1rem 1.1rem 0.1rem;
-    margin: 1.2rem 0 0 0;
-  }
-  .about-card-content {
-    padding: 0 0.1rem 0.5rem 0.1rem;
-  }
-  .about-image {
-    padding: 0.7rem 0 0.6rem 0;
-    margin-bottom: 1rem;
-  }
-  .about-services {
-    gap: 1rem;
-    margin: 1rem 0;
-  }
-}
-</style>

@@ -1,7 +1,7 @@
 <template>
-  <div id="app">
+  <div id="app" class="font-sans antialiased text-center m-0 p-0 box-border">
     <Header />
-    <main class="animated-background">
+    <main class="bg-gray-50">
       <router-view v-slot="{ Component }">
         <transition name="route-fade" mode="out-in">
           <component :is="Component" />
@@ -25,45 +25,13 @@ export default {
 };
 </script>
 
-<style scoped>
-@import './assets/main.css';
-
-#app {
-  font-family: 'Inter', Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+<style>
+/* Route transitions */
+.route-fade-enter-active, .route-fade-leave-active {
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
-
-body, html {
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  padding: 0;
-}
-
-.rexdevelop-text {
-  font-size: 2rem;
-  color: var(--color-primary);
-}
-
-.social-buttons {
-  margin: 20px 0;
-}
-
-.social-button {
-  text-decoration: none;
-  margin: 0 10px;
-  font-size: 1.5rem;
-  color: var(--color-primary);
-  transition: color 0.3s, transform 0.3s;
-}
-
-.social-button:hover {
-  color: var(--color-accent);
-  transform: scale(1.1);
+.route-fade-enter-from, .route-fade-leave-to {
+  opacity: 0;
+  transform: translateY(10px);
 }
 </style>
