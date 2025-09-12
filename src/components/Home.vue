@@ -1,9 +1,9 @@
 <template>
   <div id="home" class="page-content">
     <!-- Hero Section -->
-    <section class="hero animated-background-reverse glass-hero" aria-labelledby="site-title">
+    <section class="hero animated-background-reverse" aria-labelledby="site-title">
       <div class="hero-content reveal">
-        <h1 id="site-title" class="glow rexdevelop-text">RexDevelop</h1>
+        <h1 id="site-title" class="rexdevelop-text">RexDevelop</h1>
         <p class="hero-tagline">Innovación en Desarrollo, Marketing y Contabilidad para tu empresa.</p>
         <p class="hero-location">Atendemos Loma Dorada (Tonalá, Jalisco) y Guadalajara.</p>
         <div class="hero-cta">
@@ -18,19 +18,27 @@
     </section>
 
     <!-- Servicios -->
-    <section class="services glass-section" aria-labelledby="services-title">
+    <section class="services" aria-labelledby="services-title">
           <h2 id="services-title" class="section-title reveal">¿Qué hacemos?</h2>
       <div class="service-list">
-        <div class="service-card glass-card reveal" v-for="service in serviceData" :key="service.title">
-          <div class="service-icon" :style="{ color: service.color }" :aria-label="service.title" role="img">
-            <i :class="service.icon"></i>
-          </div>
-          <h3 class="service-name">{{ service.title }}</h3>
-          <p class="service-desc">{{ service.desc }}</p>
-          <RouterLink :to="service.link" class="service-link" aria-label="Ver más sobre {{ service.title }}">
-            Ver más <i class="fas fa-arrow-right"></i>
-          </RouterLink>
-        </div>
+        <Card v-for="service in serviceData" :key="service.title" class="service-card reveal">
+          <template #header>
+            <div class="service-icon" :style="{ color: service.color }">
+              <i :class="service.icon"></i>
+            </div>
+          </template>
+          <template #title>
+            <h3 class="service-name">{{ service.title }}</h3>
+          </template>
+          <template #content>
+            <p class="service-desc">{{ service.desc }}</p>
+          </template>
+          <template #footer>
+            <RouterLink :to="service.link" class="service-link" aria-label="Ver más sobre {{ service.title }}">
+              <Button label="Ver más" icon="pi pi-arrow-right" text />
+            </RouterLink>
+          </template>
+        </Card>
       </div>
     </section>
 
@@ -103,6 +111,7 @@
 
 <script setup lang="ts">
 import { onMounted, onBeforeUnmount, nextTick } from 'vue'
+import Card from 'primevue/card';
 
 const serviceData = [
   {
@@ -185,29 +194,6 @@ onBeforeUnmount(() => {
   width: 100%;
 }
 
-/* Glassmorphism backgrounds */
-.glass-hero, .glass-section, .glass-card, .glass-contact, .glass-service {
-  background: rgba(34, 39, 54, 0.78);
-  backdrop-filter: blur(12px) saturate(130%);
-  box-shadow: 0 10px 40px 0 rgba(51, 125, 137, 0.09), 0 1px 8px rgba(255,102,153,0.06);
-  border-radius: 18px;
-}
-
-.glass-card {
-  border: 1.5px solid rgba(255,255,255,0.06);
-  box-shadow: 0 8px 32px rgba(0,0,0,0.09);
-}
-
-.glass-service {
-  border: 1.2px solid var(--color-accent);
-  box-shadow: 0 4px 20px rgba(255, 102, 153, 0.08);
-  margin-bottom: 0.5rem;
-}
-
-.glass-contact {
-  margin-bottom: 2rem;
-}
-
 /* Hero Section */
 .hero {
   padding: 6rem 2rem 3.5rem 2rem;
@@ -216,6 +202,7 @@ onBeforeUnmount(() => {
   margin-top: 1rem;
   position: relative;
   overflow: hidden;
+  border-radius: 18px;
 }
 
 /* FAQ Section */
@@ -226,6 +213,8 @@ onBeforeUnmount(() => {
 }
 .faq-content {
   padding: 1.25rem 1.5rem;
+  background: var(--color-background);
+  border-radius: 18px;
 }
 .faq-question {
   display: flex;
@@ -278,45 +267,6 @@ onBeforeUnmount(() => {
   margin-top: 2rem;
 }
 
-.btn-primary, .btn-secondary, .btn-accent {
-  display: inline-block;
-  padding: 0.9rem 2rem;
-  border-radius: 30px;
-  font-weight: bold;
-  text-decoration: none;
-  transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
-  border: 2px solid transparent;
-  box-shadow: 0 2px 12px rgba(255, 102, 153, 0.06);
-  font-size: 1rem;
-}
-.btn-primary {
-  background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
-  color: white;
-}
-.btn-primary:hover {
-  background: transparent;
-  border-color: var(--color-primary);
-  color: var(--color-primary);
-}
-.btn-secondary {
-  background: transparent;
-  border-color: var(--color-secondary);
-  color: var(--color-secondary);
-}
-.btn-secondary:hover {
-  background: var(--color-secondary);
-  color: white;
-}
-.btn-accent {
-  background: linear-gradient(90deg, var(--color-accent), var(--color-primary));
-  color: #fff;
-}
-.btn-accent:hover {
-  background: transparent;
-  border-color: var(--color-accent);
-  color: var(--color-accent);
-}
-
 /* Section Titles */
 .section-title {
   font-size: 2.5rem;
@@ -361,55 +311,33 @@ onBeforeUnmount(() => {
   gap: 2.2rem;
   flex-wrap: wrap;
 }
+
 .service-card {
-  padding: 2rem 1.2rem 2rem 1.2rem;
   width: 300px;
   border-radius: 16px;
   text-align: center;
-  transition: transform 0.3s cubic-bezier(0.4,0,0.2,1), box-shadow 0.3s cubic-bezier(0.4,0,0.2,1);
-  position: relative;
-  overflow: hidden;
-  background: transparent;
-}
-.service-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 6px;
-  background: var(--color-primary);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
-  border-radius: 16px 16px 0 0;
-}
-.service-card:hover {
-  transform: translateY(-10px) scale(1.03) rotate(-1.2deg);
-  box-shadow: 0 20px 40px rgba(255,102,153,0.12), 0 5px 20px rgba(51,125,137,0.10);
-  z-index: 1;
-}
-.service-card:hover::before {
-  transform: scaleX(1);
-}
-.service-icon {
-  font-size: 3.1rem;
-  margin-bottom: 1.3rem;
-  transition: transform 0.3s cubic-bezier(0.4,0,0.2,1), text-shadow 0.2s;
-  filter: drop-shadow(0 0 8px var(--color-accent));
-}
-.service-card:hover .service-icon {
-  transform: scale(1.13) rotate(3deg);
-  text-shadow: 0 0 14px var(--color-accent);
+  background: var(--color-background);
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
-.service-card h4 {
+.service-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.service-icon {
+  font-size: 3.1rem;
+  padding-top: 1.5rem;
+  margin-bottom: 1.3rem;
+}
+
+.service-name {
   font-size: 1.5rem;
   margin-bottom: 1rem;
   color: var(--color-primary);
 }
 
-.service-card p {
+.service-desc {
   font-size: 1rem;
   color: var(--color-secondary);
   line-height: 1.6;
@@ -417,18 +345,9 @@ onBeforeUnmount(() => {
 }
 
 .service-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  color: var(--color-accent);
-  font-weight: bold;
   text-decoration: none;
-  transition: gap 0.28s cubic-bezier(0.4,0,0.2,1);
 }
-.service-link:hover {
-  gap: 0.99rem;
-  text-shadow: 0 0 7px var(--color-accent);
-}
+
 
 /* About Section */
 .about-card {
@@ -442,10 +361,9 @@ onBeforeUnmount(() => {
   width: 100%;
   margin: 2rem auto 0 auto;
   box-sizing: border-box;
-  box-shadow: 0 6px 32px rgba(255, 102, 153, 0.08), 0 2px 12px rgba(51,125,137,0.04);
-  background: rgba(34, 39, 54, 0.78);
+  box-shadow: 0 6px 32px rgba(0, 0, 0, 0.08);
+  background: var(--color-background);
   border-radius: 18px;
-  border: 1.5px solid rgba(255,255,255,0.06);
 }
 
 .about-image {
@@ -454,7 +372,7 @@ onBeforeUnmount(() => {
   justify-content: center;
   align-items: center;
   padding: 2rem 0 1.5rem 0;
-  background: linear-gradient(135deg, rgba(255, 102, 153, 0.11) 0%, rgba(51, 125, 137, 0.13) 100%);
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(14, 165, 233, 0.1) 100%);
   border-radius: 8px 8px 0 0;
   margin-bottom: 2rem;
 }
@@ -503,19 +421,18 @@ onBeforeUnmount(() => {
   background: rgba(255,255,255,0.06);
   padding: 1.2rem;
   border-radius: 10px;
-  box-shadow: 0 4px 16px rgba(255, 102, 153, 0.07);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.07);
   transition: box-shadow 0.2s, transform 0.22s;
 }
 .about-service-item:hover {
-  box-shadow: 0 10px 24px rgba(255, 102, 153, 0.18), 0 4px 16px rgba(51,125,137,0.12);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.12), 0 4px 16px rgba(0,0,0,0.08);
   transform: scale(1.03) translateY(-2px);
-  background: linear-gradient(135deg, rgba(255,102,153,0.10), rgba(51,125,137,0.13));
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(14, 165, 233, 0.1));
 }
 .service-detail-icon {
   font-size: 2.2rem;
   color: var(--color-primary);
   flex-shrink: 0;
-  filter: drop-shadow(0 0 8px var(--color-accent));
 }
 .about-service-item h5 {
   font-size: 1.3rem;
@@ -549,20 +466,6 @@ onBeforeUnmount(() => {
   font-size: 1.2rem;
   color: var(--color-secondary);
   margin-bottom: 2rem;
-}
-
-/* Animations */
-.glow {
-  animation: glow 2.2s infinite alternate;
-  text-shadow: 0 0 10px rgba(255, 102, 153, 0.6), 0 0 16px var(--color-accent);
-}
-@keyframes glow {
-  from {
-    text-shadow: 0 0 7px rgba(255, 102, 153, 0.4);
-  }
-  to {
-    text-shadow: 0 0 22px rgba(255, 102, 153, 0.85), 0 0 30px var(--color-primary);
-  }
 }
 
 /* Responsive adjustments */

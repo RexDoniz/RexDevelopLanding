@@ -1,11 +1,11 @@
 
-/* Paleta de colores modernizada */
+/* Paleta de colores refinada y moderna */
 :root {
-    --color-primary: #6366f1; /* Indigo 500 */
-    --color-secondary: #0ea5e9; /* Sky 500 */
-    --color-background: #f8fafc; /* Slate 50 */
-    --color-accent: #f472b6; /* Pink 400 */
-    --color-detail: #1e293b; /* Slate 800 */
-    --color-text: #0f172a; /* Slate 900 */
-  }
+  --color-primary: #4f46e5; /* Indigo 600 */
+  --color-secondary: #0891b2; /* Cyan 600 */
+  --color-background: #ffffff; /* White */
+  --color-accent: #ec4899; /* Pink 500 */
+  --color-detail: #334155; /* Slate 700 */
+  --color-text: #1e293b; /* Slate 800 */
+}
   
