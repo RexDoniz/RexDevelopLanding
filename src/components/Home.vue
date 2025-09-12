@@ -76,26 +76,6 @@
       </div>
     </section>
 
-    <!-- FAQ SEO -->
-    <section class="faq glass-section" aria-labelledby="faq-seo-title">
-      <h2 id="faq-seo-title" class="section-title reveal">SEO: ¿Qué búsquedas favorecen el resultado?</h2>
-      <div class="faq-content glass-card reveal" role="list">
-        <article class="faq-item" role="listitem">
-          <h3 class="faq-question"><i class="fas fa-magnifying-glass-chart" aria-hidden="true"></i> Según el SEO, ¿qué tipo de búsquedas favorecerán al resultado?</h3>
-          <div class="faq-answer">
-            <ul>
-              <li><strong>Consultas de intención clara</strong>: transaccionales ("contratar desarrollo web"), locales ("agencia marketing en Tonalá", "contabilidad en Guadalajara"), y navegacionales (marca: "RexDevelop").</li>
-              <li><strong>Palabras clave long-tail</strong>: más específicas y con menor competencia ("desarrollo de software a medida en Jalisco").</li>
-              <li><strong>Consultas problema-solución</strong>: formuladas como necesidad ("cómo facturar electrónicamente", "mejorar posicionamiento SEO local").</li>
-              <li><strong>Comparativas y de valor</strong>: ("mejor agencia de marketing digital en GDL", "desarrollo vs. plantilla para e‑commerce").</li>
-              <li><strong>Consultas con modificadores</strong>: "cerca de mí", por colonia o municipio ("Loma Dorada Tonalá"), por sector ("para restaurantes", "para pymes").</li>
-            </ul>
-            <p class="faq-note">Para potenciar estas búsquedas: optimiza títulos y descripciones, crea páginas/sections específicas por servicio y ubicación, añade datos estructurados (FAQ, LocalBusiness) y reseñas.</p>
-          </div>
-        </article>
-      </div>
-    </section>
-
     <!-- Contact Call -->
     <section class="contact-call animated-background-reverse glass-contact" aria-labelledby="contact-title">
       <div class="contact-call-content reveal">
