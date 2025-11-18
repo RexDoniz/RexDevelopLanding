@@ -1,24 +1,36 @@
+// Obtener el tema guardado en localStorage o usar la preferencia del sistema
+const getInitialTheme = (): boolean => {
+  const saved = localStorage.getItem('theme-preference');
+  if (saved !== null) {
+    return saved === 'dark';
+  }
+  return window.matchMedia('(prefers-color-scheme: dark)').matches;
+};
+
 const state = {
-  isDark: window.matchMedia('(prefers-color-scheme: dark)').matches
+  isDark: getInitialTheme()
 };
 
 const mutations = {
   setDarkMode(state: { isDark: boolean }, value: boolean) {
     state.isDark = value;
+    // Guardar preferencia en localStorage
+    localStorage.setItem('theme-preference', value ? 'dark' : 'light');
   }
 };
 
 const actions = {
-  toggleTheme({ state, commit }: { state: { isDark: boolean }, commit: Function }) {
-    commit('setDarkMode', !state.isDark);
-    actions.updateTheme({ state });
+  toggleTheme({ state, commit, dispatch }: { state: { isDark: boolean }, commit: Function, dispatch: Function }) {
+    const newValue = !state.isDark;
+    commit('setDarkMode', newValue);
+    dispatch('updateTheme');
   },
   updateTheme({ state }: { state: { isDark: boolean }}) {
     // Remover temas existentes
     const links = document.querySelectorAll('link[data-theme]');
     links.forEach(link => link.remove());
 
-    // Cargar el nuevo tema
+    // Cargar el nuevo tema de PrimeVue
     const themeName = state.isDark ? 'lara-dark-blue' : 'lara-light-blue';
     const themeLink = document.createElement('link');
     themeLink.rel = 'stylesheet';
@@ -27,16 +39,32 @@ const actions = {
     document.head.appendChild(themeLink);
 
     // Actualizar clases de Tailwind
-    document.documentElement.classList.toggle('dark', state.isDark);
+    if (state.isDark) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+
+    // Actualizar meta theme-color para navegadores móviles
+    let themeColorMeta = document.querySelector('meta[name="theme-color"]');
+    if (!themeColorMeta) {
+      themeColorMeta = document.createElement('meta');
+      themeColorMeta.setAttribute('name', 'theme-color');
+      document.head.appendChild(themeColorMeta);
+    }
+    themeColorMeta.setAttribute('content', state.isDark ? '#1f2937' : '#ffffff');
   },
-  init({ state, dispatch }: { state: { isDark: boolean }, dispatch: Function }) {
+  init({ state, commit, dispatch }: { state: { isDark: boolean }, commit: Function, dispatch: Function }) {
+    // Aplicar el tema inicial
     dispatch('updateTheme');
     
-    // Escuchar cambios en el tema del sistema
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-      dispatch('setDarkMode', e.matches);
-      dispatch('updateTheme');
-    });
+    // Escuchar cambios en el tema del sistema (solo si no hay preferencia guardada)
+    if (!localStorage.getItem('theme-preference')) {
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+        commit('setDarkMode', e.matches);
+        dispatch('updateTheme');
+      });
+    }
   }
 };
 
